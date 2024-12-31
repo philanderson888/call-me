@@ -76,17 +76,17 @@ export const Contacts: React.FC = () => {
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="flex justify-between items-center mb-8">
                   <h2 className="text-3xl font-bold text-gray-900">Contacts</h2>
-                  <div className="space-x-2">
+                  <div className="flex gap-4 ml-auto">
                     <button
                       onClick={handleCallRandom}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                      className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors duration-200"
                     >
                       <Phone className="h-5 w-5 mr-2" />
                       Call Random
                     </button>
                     <button
                       onClick={() => setIsFormOpen(true)}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                      className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200"
                     >
                       <Plus className="h-5 w-5 mr-2" />
                       Add Contact
@@ -129,7 +129,12 @@ export const Contacts: React.FC = () => {
                     >
                       <div>
                         <h3 className="text-lg font-medium">{contact.firstName}</h3>
-                        <p className="text-gray-600">{contact.phoneNumber}</p>
+                        <a 
+                          href={`tel:${contact.phoneNumber}`}
+                          className="text-gray-600 hover:text-indigo-600"
+                        >
+                          {contact.phoneNumber}
+                        </a>
                       </div>
                       <div className="flex space-x-2">
                         <button
