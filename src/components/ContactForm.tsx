@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Contact } from '../types';
-import { UserCircle, Phone, Calendar, Clock } from 'lucide-react';
+import { UserCircle, Phone, Mail, Calendar, Clock } from 'lucide-react';
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, 'id'>) => void;
@@ -15,6 +15,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 }) => {
   const [firstName, setFirstName] = useState(initialValues?.firstName || '');
   const [phoneNumber, setPhoneNumber] = useState(initialValues?.phoneNumber || '');
+  const [email, setEmail] = useState(initialValues?.email || '');
   const [contactFrequencyDays, setContactFrequencyDays] = useState(initialValues?.contactFrequencyDays || 90);
   const [lastContactDate, setLastContactDate] = useState(initialValues?.lastContactDate || '');
 
@@ -23,6 +24,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     onSubmit({
       firstName,
       phoneNumber,
+      email,
       contactFrequencyDays,
       lastContactDate: lastContactDate || null,
       userId: initialValues?.userId || '',
@@ -59,6 +61,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             onChange={(e) => setPhoneNumber(e.target.value)}
             className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
             required
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Email</label>
+        <div className="mt-1 relative rounded-md shadow-sm">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Mail className="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
       </div>

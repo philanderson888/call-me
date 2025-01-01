@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Contact } from '../types';
 import { ContactForm } from '../components/ContactForm';
 import { getContacts, saveContact, updateContact, deleteContact, getRandomContact } from '../utils/storage';
-import { Phone, Edit, Trash2, Plus } from 'lucide-react';
+import { Phone, Mail, Edit, Trash2, Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export const Contacts: React.FC = () => {
@@ -129,12 +129,24 @@ export const Contacts: React.FC = () => {
                     >
                       <div>
                         <h3 className="text-lg font-medium">{contact.firstName}</h3>
-                        <a 
-                          href={`tel:${contact.phoneNumber}`}
-                          className="text-gray-600 hover:text-indigo-600"
-                        >
-                          {contact.phoneNumber}
-                        </a>
+                        <div className="flex flex-col space-y-1">
+                          <a 
+                            href={`tel:${contact.phoneNumber}`}
+                            className="text-gray-600 hover:text-indigo-600 flex items-center"
+                          >
+                            <Phone className="h-4 w-4 mr-1" />
+                            {contact.phoneNumber}
+                          </a>
+                          {contact.email && (
+                            <a 
+                              href={`mailto:${contact.email}`}
+                              className="text-gray-600 hover:text-indigo-600 flex items-center"
+                            >
+                              <Mail className="h-4 w-4 mr-1" />
+                              {contact.email}
+                            </a>
+                          )}
+                        </div>
                       </div>
                       <div className="flex space-x-2">
                         <button

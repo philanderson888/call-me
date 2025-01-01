@@ -7,6 +7,7 @@ export interface Contact {
   id: string;
   firstName: string;
   phoneNumber: string;
+  email: string;
   userId: string;
   contactFrequencyDays: number;
   lastContactDate: string | null;
